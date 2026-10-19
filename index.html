@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Bordelaise de Courtage — Gestion de patrimoine & Assurances · Bordeaux, Paris, Nice</title>
+<meta name="description" content="Courtier libéral en gestion de patrimoine et assurances à Bordeaux, Paris et Nice. Bilan patrimonial offert, investissement, assurances, optimisation fiscale.">
+<meta name="theme-color" content="#0D1B2A">
+<meta property="og:title" content="La Bordelaise de Courtage — Votre patrimoine, entre de bonnes mains.">
+<meta property="og:description" content="Bilan patrimonial offert. Investissement, assurance, fiscalité : un seul interlocuteur de confiance, à Bordeaux, Paris et Nice.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D1B2A'/%3E%3Cpolygon points='16,6 27,25 5,25' fill='none' stroke='%23C8A84B' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap');
+
+/* ============ TOKENS ============ */
+:root {
+  --nuit: #0D1B2A;
+  --ardoise: #1E3A52;
+  --creme: #F5F1EB;
+  --perle: #E8E2D8;
+  --brume: #8DA0B3;
+  --or: #C8A84B;
+
+  --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --f-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --bandeau-h: 36px;
+  --header-h: 76px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --max: 1200px;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+
+  /* Motif triangles — tuile 28×24, (14,2)(26,22)(2,22), stroke or 4 % */
+  --motif: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='24' viewBox='0 0 28 24'%3E%3Cpolygon points='14,2 26,22 2,22' fill='none' stroke='%23C8A84B' stroke-opacity='0.04' stroke-width='0.5'/%3E%3C/svg%3E");
+}
+
+/* ============ BASE ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--bandeau-h) + var(--header-h));
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--nuit);
+  background: var(--creme);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+ul { list-style: none; }
+:focus-visible { outline: 2px solid var(--or); outline-offset: 3px; }
+
+.container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: clamp(80px, 11vw, 140px) 0; position: relative; }
+.motif { background-color: var(--nuit); background-image: var(--motif); background-size: 28px 24px; }
+.motif.ardoise { background-color: var(--ardoise); }
+.bg-creme { background: var(--creme); }
+.bg-perle { background: var(--perle); }
+
+.skip {
+  position: absolute; left: 16px; top: -60px; z-index: 200;
+  background: var(--or); color: var(--nuit); padding: 10px 16px; font-weight: 700;
+}
+.skip:focus { top: 8px; }
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--or);
+  margin-bottom: 20px;
+}
+.h2 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(32px, 4.4vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--nuit);
+  max-width: 760px;
+}
+.lead {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--brume);
+  max-width: 540px;
+  margin-top: 20px;
+}
+.rule {
+  display: block; width: 48px; height: 1px; background: var(--or); margin: 28px 0 0;
+}
+
+/* ============ BOUTONS ============ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px 28px;
+  border-radius: 2px;
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-or { background: var(--or); color: var(--nuit); border-color: var(--or); }
+.btn-or:hover { background: var(--creme); border-color: var(--creme); }
+.btn-ghost { color: var(--creme); border-color: rgba(245, 241, 235, .5); background: transparent; font-weight: 500; }
+.btn-ghost:hover { border-color: var(--or); color: var(--or); }
+.btn .arrow { transition: transform .25s var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ============ 0. BANDEAU ============ */
+.bandeau {
+  position: fixed; inset: 0 0 auto 0; z-index: 110;
+  height: var(--bandeau-h);
+  background: var(--or);
+  color: var(--nuit);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 0 16px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.bandeau a { border-bottom: 1px solid transparent; transition: border-color .2s; }
+.bandeau a:hover { border-color: var(--nuit); }
+
+/* ============ 1. HEADER ============ */
+.header {
+  position: fixed; top: var(--bandeau-h); left: 0; right: 0; z-index: 100;
+  height: var(--header-h);
+  background: rgba(245, 241, 235, 0);
+  border-bottom: 1px solid transparent;
+  transition: background-color .35s var(--ease), border-color .35s var(--ease), backdrop-filter .35s, height .35s var(--ease);
+}
+.header.scrolled {
+  --header-h: 68px;
+  background: rgba(245, 241, 235, .97);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom-color: rgba(13, 27, 42, .08);
+}
+.header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+
+.logo { display: flex; align-items: center; }
+.logo-tri { width: 18px; height: 16px; margin-right: 10px; flex-shrink: 0; }
+.logo-tri polygon { fill: none; stroke: var(--or); stroke-width: 1.5; stroke-linejoin: miter; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-name { font-family: var(--f-display); font-weight: 400; font-size: 20px; color: var(--creme); transition: color .35s; white-space: nowrap; }
+.logo-name em { font-style: italic; color: var(--brume); transition: color .35s; }
+.logo-sub {
+  font-family: var(--f-body); font-weight: 400; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--brume); margin-top: 3px;
+}
+.header.scrolled .logo-name { color: var(--nuit); }
+.header.scrolled .logo-name em { color: var(--ardoise); }
+
+.nav { display: flex; align-items: center; gap: 36px; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  position: relative;
+  font-size: 14px; font-weight: 500; color: var(--creme);
+  transition: color .2s;
+  padding: 6px 0;
+}
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: var(--or); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--or); }
+.nav-links a.active::after { transform: scaleX(1); }
+.header.scrolled .nav-links a { color: var(--nuit); }
+.header.scrolled .nav-links a:hover, .header.scrolled .nav-links a.active { color: var(--or); }
+
+.btn-header {
+  padding: 11px 20px;
+  font-weight: 500; font-size: 13px;
+  background: var(--or); color: var(--nuit); border: 1px solid var(--or);
+}
+.btn-header:hover { background: transparent; color: var(--or); }
+.header.scrolled .btn-header { background: var(--nuit); color: var(--creme); border-color: var(--nuit); }
+.header.scrolled .btn-header:hover { background: transparent; color: var(--nuit); }
+
+.burger {
+  display: none;
+  width: 44px; height: 44px;
+  background: none; border: 0; cursor: pointer;
+  position: relative;
+}
+.burger span {
+  position: absolute; left: 11px; right: 11px; height: 1.5px; background: var(--creme);
+  transition: transform .3s var(--ease), opacity .2s, background-color .35s;
+}
+.burger span:nth-child(1) { top: 16px; }
+.burger span:nth-child(2) { top: 21px; }
+.burger span:nth-child(3) { top: 26px; }
+.header.scrolled .burger span { background: var(--nuit); }
+.menu-open .burger span { background: var(--creme) !important; }
+.menu-open .burger span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.menu-open .burger span:nth-child(2) { opacity: 0; }
+.menu-open .burger span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+/* ============ 2. HERO ============ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: calc(var(--bandeau-h) + var(--header-h) + clamp(48px, 8vh, 96px));
+  padding-bottom: 0;
+  color: var(--creme);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 55% at 85% 35%, rgba(30, 58, 82, .9), transparent 70%);
+}
+.hero-grid {
+  position: relative;
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+  gap: 48px; align-items: center;
+  flex: 1;
+}
+.hero h1 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(44px, 6.6vw, 78px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--creme);
+}
+.hero h1 span { display: block; }
+.hero h1 .l2 { font-weight: 400; font-style: italic; color: var(--brume); }
+.hero h1 .l3 { color: var(--or); }
+.hero-sub {
+  font-size: 17px; line-height: 1.75; color: var(--brume);
+  max-width: 500px; margin-top: 28px;
+}
+.reassurance {
+  display: inline-flex; flex-wrap: wrap; gap: 6px 22px;
+  margin-top: 32px;
+  padding: 12px 20px;
+  background: var(--ardoise);
+  border-left: 2px solid var(--or);
+  font-size: 13px; font-weight: 500; color: var(--creme);
+}
+.reassurance li { white-space: nowrap; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+
+.hero-visual { position: relative; display: flex; justify-content: center; }
+.hero-visual svg { width: 100%; max-width: 420px; height: auto; overflow: visible; }
+.hero-visual .t { fill: none; stroke: var(--or); stroke-linejoin: miter; }
+.hero-visual .t1 { stroke-width: 1.2; }
+.hero-visual .t2 { stroke-width: .8; opacity: .45; }
+.hero-visual .t3 { stroke-width: .6; opacity: .22; }
+.hero-visual .t4 { stroke: var(--brume); stroke-width: .5; opacity: .25; }
+.hero-visual .dot { fill: var(--or); }
+.hero-visual .draw { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: draw 2.4s var(--ease) .3s forwards; }
+.hero-visual .draw.d2 { animation-delay: .6s; }
+.hero-visual .draw.d3 { animation-delay: .9s; }
+.hero-visual .pulse { animation: pulse 3.2s ease-in-out 2.6s infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.hero-visual figcaption {
+  position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+  font-family: var(--f-display); font-style: italic; font-size: 14px; color: var(--brume);
+  white-space: nowrap;
+}
+
+.stats {
+  position: relative;
+  margin-top: clamp(56px, 9vh, 96px);
+  background: var(--ardoise);
+  border-top: 1px solid rgba(141, 160, 179, .2);
+}
+.stats-row {
+  display: flex; gap: 0;
+  border: 1px solid rgba(141, 160, 179, .2);
+  border-top: 0; border-bottom: 0;
+}
+.stat {
+  flex: 1;
+  padding: 28px clamp(16px, 3vw, 40px);
+  border-right: 1px solid rgba(141, 160, 179, .3);
+}
+.stat:last-child { border-right: 0; }
+.stat strong {
+  display: block;
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(26px, 3vw, 36px); line-height: 1.1;
+  color: var(--or);
+}
+.stat span {
+  display: block; margin-top: 6px;
+  font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--brume);
+}
+
+/* ============ 3. SERVICES ============ */
+.section-head { margin-bottom: clamp(48px, 6vw, 72px); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.card-service {
+  position: relative;
+  background: var(--perle);
+  border-left: 3px solid var(--or);
+  border-radius: 0;
+  padding: 28px;
+  box-shadow: 0 1px 2px rgba(13, 27, 42, .04), 0 8px 24px -12px rgba(13, 27, 42, .12);
+  transition: background-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+  display: flex; flex-direction: column;
+}
+.card-service:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(13, 27, 42, .05), 0 18px 40px -16px rgba(13, 27, 42, .22);
+  z-index: 1;
+}
+.card-num {
+  position: absolute; top: 24px; right: 28px;
+  font-family: var(--f-display); font-style: italic; font-size: 14px; color: var(--brume);
+}
+.card-icon { font-size: 26px; line-height: 1; margin-bottom: 22px; }
+.card-service h3 {
+  font-family: var(--f-display); font-weight: 700; font-size: 22px; line-height: 1.25; color: var(--nuit);
+}
+.card-tag {
+  font-family: var(--f-display); font-style: italic; font-size: 16px; color: var(--ardoise);
+  margin-top: 8px;
+}
+.card-service p.desc { font-size: 15px; line-height: 1.7; color: var(--ardoise); margin-top: 14px; opacity: .88; }
+
+/* ============ 4. POURQUOI ============ */
+.why { text-align: center; color: var(--creme); }
+.why-title {
+  font-family: var(--f-display); font-weight: 400; font-style: italic;
+  font-size: clamp(32px, 4.6vw, 56px); line-height: 1.15;
+  color: var(--creme);
+  max-width: 820px; margin: 0 auto;
+}
+.why-title::before, .why-title::after { color: var(--or); }
+.why-title::before { content: "« "; }
+.why-title::after { content: " »"; }
+.why-text {
+  font-size: 17px; line-height: 1.8; color: var(--brume);
+  max-width: 560px; margin: 28px auto 0;
+}
+.why .rule { margin: 32px auto 0; }
+.why-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  margin-top: clamp(48px, 6vw, 72px);
+  text-align: left;
+}
+.arg {
+  background: var(--nuit);
+  border: 1px solid rgba(200, 168, 75, .3);
+  border-radius: 0;
+  padding: 24px;
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.arg:hover { border-color: var(--or); transform: translateY(-2px); }
+.arg-icon { font-size: 24px; line-height: 1; }
+.arg h3 {
+  font-family: var(--f-display); font-weight: 700; font-size: 20px; color: var(--creme);
+  margin-top: 18px;
+}
+.arg p { font-size: 14.5px; line-height: 1.7; color: var(--brume); margin-top: 10px; }
+
+/* ============ 5. BILAN OFFERT ============ */
+.bilan { color: var(--creme); }
+.bilan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 88px); align-items: center; }
+.bilan h2 {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(36px, 5vw, 60px); line-height: 1.08; letter-spacing: -0.01em;
+  color: var(--creme);
+}
+.bilan h2 em { font-style: italic; font-weight: 400; color: var(--or); }
+.bilan-text { font-size: 17px; line-height: 1.8; color: var(--brume); max-width: 480px; margin-top: 24px; }
+.checklist { margin-top: 32px; display: grid; gap: 2px; max-width: 520px; }
+.checklist li {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: var(--ardoise);
+  border-left: 2px solid var(--or);
+  border-radius: 0;
+  padding: 14px 18px;
+  font-size: 15px; color: var(--creme);
+}
+.checklist .ck { flex-shrink: 0; line-height: 1.5; }
+.bilan-cta { margin-top: 36px; }
+.bilan-cta .btn { font-size: 14px; }
+.bilan-cta small { display: block; margin-top: 14px; font-size: 12px; color: var(--brume); letter-spacing: .04em; }
+
+.quote-card {
+  position: relative;
+  background: var(--ardoise);
+  border: 1px solid rgba(200, 168, 75, .3);
+  padding: clamp(48px, 6vw, 80px) clamp(32px, 4vw, 56px);
+  text-align: center;
+  min-height: 440px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.quote-card::before {
+  content: ""; position: absolute; inset: 14px;
+  border: 1px solid rgba(200, 168, 75, .12);
+  pointer-events: none;
+}
+.quote-card .q-tri { width: 40px; height: 36px; margin-bottom: 32px; }
+.quote-card .q-tri polygon { fill: none; stroke: var(--or); stroke-width: 1.2; }
+.quote-card blockquote {
+  font-family: var(--f-display); font-weight: 400; font-style: italic;
+  font-size: clamp(22px, 2.4vw, 30px); line-height: 1.45;
+  color: var(--brume);
+  max-width: 420px;
+}
+.quote-card blockquote strong { font-weight: 400; color: var(--creme); }
+.quote-card cite {
+  display: block; margin-top: 32px;
+  font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--or);
+}
+
+/* ============ 6. TÉMOIGNAGES ============ */
+.testi-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+.testi-head .h2 { font-weight: 400; }
+.testi-head .h2 em { font-style: italic; color: var(--ardoise); }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.testi {
+  background: var(--perle);
+  border-radius: 0;
+  border-top: 3px solid var(--or);
+  padding: 28px;
+  display: flex; flex-direction: column;
+}
+.stars { font-size: 13px; letter-spacing: 2px; }
+.testi blockquote {
+  font-family: var(--f-display); font-size: 18px; line-height: 1.6; color: var(--nuit);
+  margin-top: 18px; flex: 1;
+}
+.testi footer {
+  margin-top: 24px; padding-top: 18px;
+  border-top: 1px solid rgba(13, 27, 42, .1);
+  font-size: 13px; color: var(--ardoise);
+}
+.testi footer strong { display: block; font-weight: 700; color: var(--nuit); font-size: 14px; }
+
+/* ============ 7. CONTACT ============ */
+.contact-grid {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2px;
+  margin-top: clamp(48px, 6vw, 64px);
+  box-shadow: 0 30px 60px -30px rgba(13, 27, 42, .3);
+}
+.contact-card {
+  background: var(--nuit);
+  background-image: var(--motif);
+  background-size: 28px 24px;
+  border-radius: 0;
+  padding: 40px;
+  color: var(--creme);
+  display: flex; flex-direction: column;
+}
+.contact-logo { display: flex; align-items: center; gap: 12px; }
+.contact-logo svg { width: 24px; height: 22px; }
+.contact-logo polygon { fill: none; stroke: var(--or); stroke-width: 1.5; }
+.contact-logo span { font-family: var(--f-display); font-style: italic; font-size: 18px; color: var(--creme); }
+.contact-list { margin-top: 32px; display: grid; gap: 16px; }
+.contact-list li { display: flex; gap: 12px; font-size: 15px; color: var(--brume); }
+.contact-list a { transition: color .2s; word-break: break-word; }
+.contact-list a:hover { color: var(--or); }
+.contact-sep { height: 1px; background: var(--ardoise); margin: 32px 0 24px; border: 0; }
+.contact-note { font-family: var(--f-display); font-style: italic; font-size: 14px; color: var(--or); }
+.contact-steps { margin-top: auto; padding-top: 40px; display: grid; gap: 14px; counter-reset: step; }
+.contact-steps li {
+  counter-increment: step;
+  display: flex; gap: 14px; align-items: baseline;
+  font-size: 13.5px; color: var(--brume);
+}
+.contact-steps li::before {
+  content: "0" counter(step);
+  font-family: var(--f-display); font-style: italic; color: var(--or); font-size: 15px;
+}
+
+.form {
+  background: var(--creme);
+  padding: 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px;
+}
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field.full { grid-column: 1 / -1; }
+.field label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--ardoise);
+}
+.field label .req { color: var(--or); }
+.field input, .field select, .field textarea {
+  width: 100%;
+  background: var(--perle);
+  border: 1px solid var(--brume);
+  border-radius: 0;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: var(--nuit);
+  transition: border-color .2s, background-color .2s, box-shadow .2s;
+  -webkit-appearance: none; appearance: none;
+}
+.field textarea { min-height: 130px; resize: vertical; line-height: 1.6; }
+.field select {
+  cursor: pointer;
+  padding-right: 42px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231E3A52' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+}
+.field input::placeholder, .field textarea::placeholder { color: var(--brume); }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--or); background-color: var(--creme);
+  box-shadow: 0 0 0 3px rgba(200, 168, 75, .18);
+}
+.field.invalid input, .field.invalid select, .field.invalid textarea { border-color: #A4452C; }
+.field .err { font-size: 12px; color: #A4452C; min-height: 0; display: none; }
+.field.invalid .err { display: block; }
+.form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 6px; }
+.form-foot p { font-size: 12px; color: var(--ardoise); opacity: .8; max-width: 300px; line-height: 1.5; }
+.btn-submit {
+  border-radius: 0;
+  background: var(--or); color: var(--nuit); border: 1px solid var(--or);
+  font-weight: 700;
+  padding: 17px 30px;
+}
+.btn-submit:hover { background: var(--nuit); color: var(--or); border-color: var(--nuit); }
+.btn-submit[disabled] { opacity: .6; cursor: progress; }
+.form-status {
+  grid-column: 1 / -1;
+  display: none;
+  padding: 16px 18px;
+  border-left: 2px solid var(--or);
+  background: var(--perle);
+  font-size: 14px; color: var(--nuit);
+}
+.form-status.show { display: block; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* ============ 8. FOOTER ============ */
+.footer {
+  background: var(--nuit);
+  border-top: 2px solid var(--or);
+  color: var(--brume);
+  padding: 72px 0 32px;
+}
+.footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; }
+.footer-logo { display: flex; align-items: center; gap: 10px; }
+.footer-logo svg { width: 16px; height: 14px; }
+.footer-logo polygon { fill: none; stroke: var(--or); stroke-width: 1.5; }
+.footer-logo .fl { font-family: var(--f-display); font-size: 18px; }
+.footer-logo .fl em { font-style: italic; font-weight: 400; color: var(--brume); }
+.footer-logo .fl b { font-weight: 700; color: var(--creme); }
+.footer-tag { margin-top: 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.footer h4 {
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--or);
+  margin-bottom: 18px;
+}
+.footer ul { display: grid; gap: 10px; font-size: 14px; }
+.footer ul a { transition: color .2s; }
+.footer ul a:hover { color: var(--or); }
+.footer-legal {
+  margin-top: 56px; padding-top: 28px;
+  border-top: 1px solid var(--ardoise);
+  font-size: 10px; font-style: italic; line-height: 1.7; max-width: 760px;
+}
+.footer-bottom {
+  margin-top: 24px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+  font-size: 12px;
+}
+.footer-bottom a { color: var(--creme); transition: color .2s; }
+.footer-bottom a:hover { color: var(--or); }
+
+/* ============ REVEAL ============ */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .5s ease-out, transform .5s ease-out;
+  transition-delay: calc(var(--i, 0) * .06s);
+}
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1280px) {
+  .nav { gap: 28px; }
+  .nav-links { gap: 26px; }
+}
+@media (max-width: 1024px) {
+  :root { --header-h: 68px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  .testi-grid .testi:last-child { grid-column: 1 / -1; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-top > :first-child { grid-column: 1 / -1; }
+
+  .burger { display: block; z-index: 2; }
+  .btn-header { display: none; }
+  .nav-links {
+    position: fixed; inset: 0; z-index: 1;
+    flex-direction: column; justify-content: center; align-items: flex-start;
+    gap: 8px;
+    padding: calc(var(--bandeau-h) + 96px) var(--gutter) 48px;
+    background-color: var(--nuit);
+    background-image: var(--motif);
+    background-size: 28px 24px;
+    opacity: 0; visibility: hidden;
+    transition: opacity .35s var(--ease), visibility .35s;
+  }
+  .nav-links a, .header.scrolled .nav-links a {
+    font-family: var(--f-display); font-size: 34px; font-weight: 400; color: var(--creme);
+  }
+  .nav-links a::after { display: none; }
+  .nav-links .mobile-cta { display: inline-flex; margin-top: 24px; font-family: var(--f-body); font-size: 14px; }
+  .menu-open .nav-links { opacity: 1; visibility: visible; }
+  /* backdrop-filter crée un containing block pour les enfants fixed : on le coupe menu ouvert */
+  .header.menu-open { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--nuit); }
+  .menu-open .logo-name { color: var(--creme) !important; }
+  .menu-open .logo-name em { color: var(--brume) !important; }
+  .logo { position: relative; z-index: 2; }
+}
+@media (min-width: 1025px) {
+  .nav-links .mobile-cta { display: none; }
+}
+@media (max-width: 768px) {
+  .bandeau .b-hide { display: none; }
+  .bilan-grid { grid-template-columns: 1fr; }
+  .quote-card { display: none; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-grid .testi:last-child { grid-column: auto; }
+  .form { grid-template-columns: 1fr; padding: 32px 24px; }
+  .contact-card { padding: 32px 24px; }
+  .stats-row { flex-direction: column; border-left: 0; border-right: 0; }
+  .stat { border-right: 0; border-bottom: 1px solid rgba(141, 160, 179, .3); display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 20px var(--gutter); }
+  .stat:last-child { border-bottom: 0; }
+  .stat span { margin-top: 0; text-align: right; }
+  .stats .container { padding: 0; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-top > :first-child { grid-column: auto; }
+}
+@media (max-width: 640px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .bandeau { font-size: 10px; letter-spacing: .06em; }
+  .logo-name { font-size: 17px; }
+  .logo-sub { font-size: 9px; }
+  .hero-ctas .btn { width: 100%; }
+  .reassurance { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+  .card-service, .testi, .arg { padding: 24px 22px; }
+  .btn-submit { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0s !important;
+  }
+  .hero-visual .draw { stroke-dashoffset: 0; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+
+<!-- 0. BANDEAU -->
+<div class="bandeau" role="note">
+  <a href="#bilan">🏆 Bilan patrimonial offert<span class="b-hide"> · La Bordelaise de Courtage</span> · Bordeaux · Paris · Nice</a>
+</div>
+
+<!-- 1. HEADER -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#top" class="logo" aria-label="La Bordelaise de Courtage — accueil">
+      <svg class="logo-tri" viewBox="0 0 18 16" aria-hidden="true"><polygon points="9,1.2 17,14.8 1,14.8"/></svg>
+      <span class="logo-text">
+        <span class="logo-name">La Bordelaise<em> de Courtage</em></span>
+        <span class="logo-sub">Gestion de patrimoine · Assurances</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pourquoi">Pourquoi nous</a></li>
+        <li><a href="#bilan">Bilan gratuit</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="btn btn-or mobile-cta">Demander mon bilan gratuit</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-header">Bilan gratuit</a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 2. HERO -->
+  <section class="hero motif" id="top" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow reveal">Courtier libéral en gestion de patrimoine · Bordeaux · Paris · Nice</p>
+        <h1 id="hero-title" class="reveal" style="--i:1">
+          <span>Votre patrimoine,</span>
+          <span class="l2">entre de bonnes</span>
+          <span class="l3">mains.</span>
+        </h1>
+        <p class="hero-sub reveal" style="--i:2">
+          La Bordelaise de Courtage vous accompagne pour structurer, développer
+          et protéger votre patrimoine. Investissement, assurance, fiscalité&nbsp;:
+          un seul interlocuteur de confiance, à Bordeaux, Paris et Nice.
+        </p>
+        <ul class="reassurance reveal" style="--i:3" aria-label="Domaines d'expertise">
+          <li>💼 Bilan patrimonial</li>
+          <li>📈 Investissement</li>
+          <li>🛡️ Assurances</li>
+          <li>📋 Fiscalité</li>
+        </ul>
+        <div class="hero-ctas reveal" style="--i:4">
+          <a href="#bilan" class="btn btn-or">📋 Bilan patrimonial offert</a>
+          <a href="#services" class="btn btn-ghost">Découvrir nos services <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <figure class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 400 380">
+          <polygon class="t t4" points="200,10 390,350 10,350"/>
+          <polygon class="t t3 draw d3" points="200,40 366,336 34,336"/>
+          <polygon class="t t2 draw d2" points="200,96 320,310 80,310"/>
+          <polygon class="t t1 draw" points="200,150 278,290 122,290"/>
+          <line class="t t3" x1="200" y1="10" x2="200" y2="350"/>
+          <line class="t t3" x1="105" y1="180" x2="295" y2="180"/>
+          <circle class="dot pulse" cx="200" cy="150" r="4"/>
+          <circle class="dot" cx="200" cy="96" r="2" opacity=".6"/>
+          <circle class="dot" cx="200" cy="40" r="1.5" opacity=".35"/>
+        </svg>
+        <figcaption>Structurer · Développer · Protéger</figcaption>
+      </figure>
+    </div>
+
+    <div class="stats">
+      <div class="container">
+        <div class="stats-row">
+          <div class="stat reveal"><strong>3 villes</strong><span>Bordeaux · Paris · Nice</span></div>
+          <div class="stat reveal" style="--i:1"><strong>100%</strong><span>Indépendant &amp; libéral</span></div>
+          <div class="stat reveal" style="--i:2"><strong>Offert</strong><span>1<sup>er</sup> bilan patrimonial</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SERVICES -->
+  <section class="section bg-creme" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow reveal">Nos services</p>
+        <h2 class="h2 reveal" id="services-title" style="--i:1">Un accompagnement complet pour votre patrimoine.</h2>
+        <p class="lead reveal" style="--i:2">
+          De l'audit à la mise en œuvre, La Bordelaise de Courtage vous apporte
+          clarté, stratégie et solutions concrètes — adaptées à votre situation.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <article class="card-service reveal">
+          <span class="card-num">01</span>
+          <div class="card-icon" aria-hidden="true">📊</div>
+          <h3>Bilan Patrimonial</h3>
+          <p class="card-tag">Point de départ de tout accompagnement.</p>
+          <p class="desc">Analyse complète de votre situation actuelle : actifs, passifs, fiscalité, prévoyance. Un diagnostic clair, offert à la première consultation.</p>
+        </article>
+        <article class="card-service reveal" style="--i:1">
+          <span class="card-num">02</span>
+          <div class="card-icon" aria-hidden="true">📈</div>
+          <h3>Investissement &amp; Épargne</h3>
+          <p class="card-tag">Faites travailler votre argent.</p>
+          <p class="desc">Immobilier (SCPI, direct, nue-propriété), marchés financiers, assurance-vie, PER. Allocation d'actifs cohérente avec vos objectifs et votre horizon.</p>
+        </article>
+        <article class="card-service reveal" style="--i:2">
+          <span class="card-num">03</span>
+          <div class="card-icon" aria-hidden="true">🛡️</div>
+          <h3>Assurances</h3>
+          <p class="card-tag">Protégez ce qui compte.</p>
+          <p class="desc">Santé, prévoyance, vie, habitation, auto, responsabilité professionnelle. Des garanties adaptées à votre profil, pas à un catalogue.</p>
+        </article>
+        <article class="card-service reveal" style="--i:3">
+          <span class="card-num">04</span>
+          <div class="card-icon" aria-hidden="true">📋</div>
+          <h3>Optimisation Fiscale</h3>
+          <p class="card-tag">Payez moins, légalement.</p>
+          <p class="desc">Réduction d'impôts, niches fiscales, dispositifs légaux. Conseil clair sur les leviers adaptés à votre situation personnelle et professionnelle.</p>
+        </article>
+        <article class="card-service reveal" style="--i:4">
+          <span class="card-num">05</span>
+          <div class="card-icon" aria-hidden="true">🏢</div>
+          <h3>Chef d'Entreprise</h3>
+          <p class="card-tag">Votre activité protège votre patrimoine.</p>
+          <p class="desc">Prévoyance dirigeant, épargne salariale, séparation patrimoine perso/pro, transmission d'entreprise. La dimension pro de votre bilan patrimonial.</p>
+        </article>
+        <article class="card-service reveal" style="--i:5">
+          <span class="card-num">06</span>
+          <div class="card-icon" aria-hidden="true">📅</div>
+          <h3>Déclaration de Revenus</h3>
+          <p class="card-tag">Évitez les erreurs, optimisez vos droits.</p>
+          <p class="desc">Accompagnement à la déclaration en ligne : vérification, optimisation, identification des cases oubliées. Service annuel, simple et sécurisé.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. POURQUOI -->
+  <section class="section motif ardoise why" id="pourquoi" aria-labelledby="why-title">
+    <div class="container">
+      <p class="eyebrow reveal">Pourquoi La Bordelaise de Courtage</p>
+      <h2 class="why-title reveal" id="why-title" style="--i:1">Les marchés exigent des faits, plus que des mots.</h2>
+      <span class="rule reveal" style="--i:2"></span>
+      <p class="why-text reveal" style="--i:3">
+        En tant que courtier libéral, La Bordelaise de Courtage ne représente
+        aucun assureur ni établissement financier en particulier. Notre seul
+        engagement : trouver la meilleure solution pour vous, parmi l'ensemble
+        du marché. Un regard objectif, dans votre seul intérêt.
+      </p>
+
+      <div class="why-grid">
+        <article class="arg reveal">
+          <div class="arg-icon" aria-hidden="true">🎯</div>
+          <h3>Indépendant</h3>
+          <p>Aucun conflit d'intérêt. Nous travaillons pour vous, pas pour un réseau.</p>
+        </article>
+        <article class="arg reveal" style="--i:1">
+          <div class="arg-icon" aria-hidden="true">🔍</div>
+          <h3>Expertise multi-marchés</h3>
+          <p>Immobilier, assurance, marchés financiers. Un seul interlocuteur.</p>
+        </article>
+        <article class="arg reveal" style="--i:2">
+          <div class="arg-icon" aria-hidden="true">📍</div>
+          <h3>Ancrage local</h3>
+          <p>Né à Bordeaux, présent à Paris et Nice. Accessible où vous êtes.</p>
+        </article>
+        <article class="arg reveal" style="--i:3">
+          <div class="arg-icon" aria-hidden="true">🤝</div>
+          <h3>Relation durable</h3>
+          <p>Votre patrimoine évolue. Notre accompagnement aussi. On reste.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. BILAN OFFERT -->
+  <section class="section motif bilan" id="bilan" aria-labelledby="bilan-title">
+    <div class="container bilan-grid">
+      <div>
+        <p class="eyebrow reveal">Offre découverte</p>
+        <h2 id="bilan-title" class="reveal" style="--i:1">Votre bilan patrimonial <em>offert.</em></h2>
+        <p class="bilan-text reveal" style="--i:2">
+          En 60 minutes, nous analysons ensemble votre situation patrimoniale :
+          actifs, revenus, fiscalité, protection. Vous repartez avec un diagnostic
+          clair et des recommandations concrètes. Sans engagement. Sans frais.
+        </p>
+        <ul class="checklist">
+          <li class="reveal" style="--i:3"><span class="ck" aria-hidden="true">✅</span>Analyse complète de votre patrimoine actuel</li>
+          <li class="reveal" style="--i:4"><span class="ck" aria-hidden="true">✅</span>Identification des risques et des opportunités</li>
+          <li class="reveal" style="--i:5"><span class="ck" aria-hidden="true">✅</span>Recommandations personnalisées à votre situation</li>
+          <li class="reveal" style="--i:6"><span class="ck" aria-hidden="true">✅</span>Sans frais · Sans engagement · En visio ou en cabinet</li>
+        </ul>
+        <div class="bilan-cta reveal" style="--i:7">
+          <a href="#contact" class="btn btn-or" data-objet="Bilan patrimonial offert">Réserver mon bilan gratuit <span class="arrow" aria-hidden="true">→</span></a>
+          <small>Réponse sous 48 h ouvrées · 60 minutes · Visio ou cabinet</small>
+        </div>
+      </div>
+
+      <aside class="quote-card reveal" style="--i:2" aria-label="Citation">
+        <svg class="q-tri" viewBox="0 0 40 36" aria-hidden="true"><polygon points="20,2 38,34 2,34"/></svg>
+        <blockquote>
+          « Un patrimoine bien géré n'est pas une question de montant.
+          <strong>C'est une question de stratégie.</strong> »
+        </blockquote>
+        <cite>La Bordelaise de Courtage</cite>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 6. TÉMOIGNAGES -->
+  <!-- À REMPLACER par de vrais témoignages clients avant mise en ligne -->
+  <section class="section bg-creme" id="temoignages" aria-labelledby="testi-title">
+    <div class="container">
+      <div class="section-head testi-head">
+        <div>
+          <p class="eyebrow reveal">Témoignages</p>
+          <h2 class="h2 reveal" id="testi-title" style="--i:1">Ce que disent <em>nos clients.</em></h2>
+        </div>
+      </div>
+
+      <div class="testi-grid">
+        <article class="testi reveal">
+          <div class="stars" aria-label="5 étoiles sur 5">⭐⭐⭐⭐⭐</div>
+          <blockquote>« J'avais un patrimoine éparpillé sans vraie stratégie. En une heure de bilan, tout était clair. Gerly a su m'expliquer des choses complexes de façon simple. »</blockquote>
+          <footer><strong>Antoine M.</strong>Chef d'entreprise · Bordeaux</footer>
+        </article>
+        <article class="testi reveal" style="--i:1">
+          <div class="stars" aria-label="5 étoiles sur 5">⭐⭐⭐⭐⭐</div>
+          <blockquote>« J'ai découvert deux niches fiscales que j'ignorais totalement. Résultat : 2&nbsp;800&nbsp;€ d'impôts en moins cette année. Je recommande absolument. »</blockquote>
+          <footer><strong>Sophie L.</strong>Cadre supérieure · Paris</footer>
+        </article>
+        <article class="testi reveal" style="--i:2">
+          <div class="stars" aria-label="5 étoiles sur 5">⭐⭐⭐⭐⭐</div>
+          <blockquote>« Un vrai conseil indépendant, sans chercher à me vendre des produits. Ça change tout par rapport à ma banque. »</blockquote>
+          <footer><strong>Franck D.</strong>Investisseur · Nice</footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CONTACT -->
+  <section class="section bg-perle" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <p class="eyebrow reveal">Contact</p>
+      <h2 class="h2 reveal" id="contact-title" style="--i:1">Parlons de votre patrimoine.</h2>
+      <p class="lead reveal" style="--i:2">
+        Bordeaux · Paris · Nice — disponible en visio partout en France.
+        Premier échange offert.
+      </p>
+
+      <div class="contact-grid reveal" style="--i:3">
+        <div class="contact-card">
+          <div class="contact-logo">
+            <svg viewBox="0 0 24 22" aria-hidden="true"><polygon points="12,1.5 23,20.5 1,20.5"/></svg>
+            <span>La Bordelaise de Courtage</span>
+          </div>
+          <ul class="contact-list">
+            <li><span aria-hidden="true">📍</span><span>Bordeaux · Paris · Nice</span></li>
+            <li><span aria-hidden="true">🌐</span><a href="https://g.page/la-bordelaise-de-courtage" target="_blank" rel="noopener">g.page/la-bordelaise-de-courtage</a></li>
+            <li><span aria-hidden="true">📸</span><a href="https://www.instagram.com/la_bordelaise_de_courtage/" target="_blank" rel="noopener">@la_bordelaise_de_courtage</a></li>
+            <!-- À AJOUTER : téléphone et email direct -->
+          </ul>
+          <hr class="contact-sep">
+          <p class="contact-note">Disponible en visio partout en France.</p>
+          <ol class="contact-steps" aria-label="Comment ça se passe">
+            <li>Vous envoyez votre demande</li>
+            <li>Nous fixons un créneau sous 48 h</li>
+            <li>Bilan de 60 minutes, offert</li>
+          </ol>
+        </div>
+
+        <!-- Formulaire : renseigner data-endpoint (Web3Forms / Formspree) pour l'activer -->
+        <form class="form" id="contact-form" novalidate data-endpoint="" data-access-key="">
+          <div class="field">
+            <label for="prenom">Prénom <span class="req">*</span></label>
+            <input id="prenom" name="prenom" type="text" autocomplete="given-name" required>
+            <span class="err">Merci d'indiquer votre prénom.</span>
+          </div>
+          <div class="field">
+            <label for="nom">Nom <span class="req">*</span></label>
+            <input id="nom" name="nom" type="text" autocomplete="family-name" required>
+            <span class="err">Merci d'indiquer votre nom.</span>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+            <span class="err">Merci d'indiquer un email valide.</span>
+          </div>
+          <div class="field">
+            <label for="tel">Téléphone</label>
+            <input id="tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel">
+            <span class="err">Numéro invalide.</span>
+          </div>
+          <div class="field">
+            <label for="situation">Situation <span class="req">*</span></label>
+            <select id="situation" name="situation" required>
+              <option value="" selected disabled>Sélectionner…</option>
+              <option>Particulier</option>
+              <option>Chef d'entreprise</option>
+              <option>Professions libérales</option>
+              <option>Investisseur</option>
+              <option>Salarié</option>
+              <option>Retraité</option>
+              <option>Autre</option>
+            </select>
+            <span class="err">Merci de préciser votre situation.</span>
+          </div>
+          <div class="field">
+            <label for="objet">Objet <span class="req">*</span></label>
+            <select id="objet" name="objet" required>
+              <option value="" disabled>Sélectionner…</option>
+              <option selected>Bilan patrimonial offert</option>
+              <option>Gestion de patrimoine</option>
+              <option>Assurances &amp; Prévoyance</option>
+              <option>Optimisation fiscale</option>
+              <option>Investissement immobilier</option>
+              <option>Marchés financiers</option>
+              <option>Déclaration de revenus</option>
+              <option>Autre</option>
+            </select>
+            <span class="err">Merci de choisir un objet.</span>
+          </div>
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Quelques mots sur votre situation et vos objectifs…"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+          <div class="form-foot">
+            <p>Vos informations restent strictement confidentielles et ne servent qu'à vous recontacter.</p>
+            <button type="submit" class="btn btn-submit">Demander mon bilan gratuit <span class="arrow" aria-hidden="true">→</span></button>
+          </div>
+          <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 8. FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <svg viewBox="0 0 16 14" aria-hidden="true"><polygon points="8,1 15,13 1,13"/></svg>
+          <span class="fl"><em>La Bordelaise</em><b> de Courtage</b></span>
+        </div>
+        <p class="footer-tag">Courtier libéral en gestion de patrimoine &amp; assurances</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pourquoi">Pourquoi nous</a></li>
+          <li><a href="#bilan">Bilan gratuit</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Nous trouver</h4>
+        <ul>
+          <li>📍 Bordeaux · Paris · Nice</li>
+          <li>🌐 <a href="https://g.page/la-bordelaise-de-courtage" target="_blank" rel="noopener">g.page/la-bordelaise-de-courtage</a></li>
+          <li>📸 <a href="https://www.instagram.com/la_bordelaise_de_courtage/" target="_blank" rel="noopener">@la_bordelaise_de_courtage</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="footer-legal">
+      La Bordelaise de Courtage — Courtier libéral. Les informations
+      contenues sur ce site ne constituent pas un conseil en investissement.
+      Tout accompagnement est personnalisé à votre situation.
+      <!-- À COMPLÉTER : n° ORIAS, statut IAS / CIF, RC Pro, médiateur, SIREN -->
+    </p>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> La Bordelaise de Courtage — Tous droits réservés</span>
+      <span>Site réalisé par <a href="https://paymentflow.fr" target="_blank" rel="noopener">Payment Flow</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var doc = document.documentElement;
+  doc.classList.add('js');
+
+  var header = document.getElementById('header');
+  var burger = document.getElementById('burger');
+  var navLinks = document.getElementById('nav-links');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Année */
+  var year = document.getElementById('year');
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  /* Header au scroll */
+  var ticking = false;
+  function onScroll() {
+    header.classList.toggle('scrolled', window.scrollY > 24);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+  onScroll();
+
+  /* Menu mobile */
+  function setMenu(open) {
+    header.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function () {
+    setMenu(!header.classList.contains('menu-open'));
+  });
+  navLinks.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && header.classList.contains('menu-open')) { setMenu(false); burger.focus(); }
+  });
+  window.matchMedia('(min-width: 1025px)').addEventListener('change', function (m) {
+    if (m.matches) setMenu(false);
+  });
+
+  /* Scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+
+  /* Scrollspy */
+  var spyLinks = navLinks.querySelectorAll('a[href^="#"]:not(.mobile-cta)');
+  var spyMap = {};
+  spyLinks.forEach(function (a) { spyMap[a.getAttribute('href').slice(1)] = a; });
+  var spySections = Object.keys(spyMap).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var link = spyMap[entry.target.id];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          spyLinks.forEach(function (a) { a.classList.remove('active'); a.removeAttribute('aria-current'); });
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'true');
+        } else if (link.classList.contains('active')) {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    spySections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* CTA → pré-remplit l'objet */
+  var objet = document.getElementById('objet');
+  document.querySelectorAll('[data-objet]').forEach(function (el) {
+    el.addEventListener('click', function () { objet.value = el.getAttribute('data-objet'); });
+  });
+
+  /* Formulaire */
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('form-status');
+  var submitBtn = form.querySelector('.btn-submit');
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var telRe = /^[+()\d\s.-]{8,20}$/;
+
+  function validateField(input) {
+    var field = input.closest('.field');
+    if (!field) return true;
+    var v = input.value.trim();
+    var ok = true;
+    if (input.required && !v) ok = false;
+    else if (input.type === 'email' && v && !emailRe.test(v)) ok = false;
+    else if (input.type === 'tel' && v && !telRe.test(v)) ok = false;
+    field.classList.toggle('invalid', !ok);
+    input.setAttribute('aria-invalid', String(!ok));
+    return ok;
+  }
+
+  form.querySelectorAll('input, select, textarea').forEach(function (input) {
+    input.addEventListener('blur', function () { if (input.name !== 'botcheck') validateField(input); });
+    input.addEventListener('input', function () {
+      if (input.closest('.field') && input.closest('.field').classList.contains('invalid')) validateField(input);
+    });
+  });
+
+  function showStatus(msg) {
+    status.textContent = msg;
+    status.classList.add('show');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var fields = form.querySelectorAll('.field input, .field select, .field textarea');
+    var firstInvalid = null;
+    fields.forEach(function (f) { if (!validateField(f) && !firstInvalid) firstInvalid = f; });
+    if (firstInvalid) { firstInvalid.focus(); return; }
+    if (form.botcheck.value) return;
+
+    var endpoint = form.getAttribute('data-endpoint');
+    var accessKey = form.getAttribute('data-access-key');
+    var prenom = form.prenom.value.trim();
+
+    if (!endpoint) {
+      console.warn('[La Bordelaise] Formulaire non connecté : renseigner data-endpoint (Web3Forms ou Formspree).');
+      showStatus('Merci ' + prenom + ' ! Votre demande a bien été préparée. Le formulaire sera activé très prochainement — en attendant, écrivez-nous sur Instagram @la_bordelaise_de_courtage.');
+      return;
+    }
+
+    var data = new FormData(form);
+    if (accessKey) data.append('access_key', accessKey);
+    data.append('subject', 'Nouvelle demande — ' + form.objet.value);
+
+    submitBtn.disabled = true;
+    fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        form.reset();
+        objet.value = 'Bilan patrimonial offert';
+        showStatus('Merci ' + prenom + ' ! Votre demande est bien reçue. Nous revenons vers vous sous 48 h ouvrées.');
+      })
+      .catch(function () {
+        showStatus('Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous écrire sur Instagram @la_bordelaise_de_courtage.');
+      })
+      .then(function () { submitBtn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
